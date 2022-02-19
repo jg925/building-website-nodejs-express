@@ -8,6 +8,7 @@ const routes = require('./routes');
 const FeedbackService = require('./services/FeedbackService');
 const SpeakersService = require('./services/SpeakerService');
 const { create } = require('domain');
+const { body } = require('express-validator');
 
 const feedbackService = new FeedbackService('./data/feedback.json');
 const speakersService = new SpeakersService('./data/speakers.json');
@@ -26,6 +27,7 @@ app.use(
 );
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'));
